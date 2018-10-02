@@ -1,5 +1,5 @@
 FROM java:8-alpine
-MAINTAINER aozk<rm.hyphen.rf.space.slash@gmail.com>
+LABEL maintainer "aozk <rm.hyphen.rf.space.slash@gmail.com>"
 
 ENV PLANTUML_VERSION 1.2018.10
 ENV LANG en_US.UTF-8
