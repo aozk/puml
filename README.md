@@ -43,5 +43,13 @@ $ puml -tpng -charset utf-8 usecase.uml
 $ puml -h
 ```
 
+## Test
+
+This container tested by testtool [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test). Test settings is `test/puml_test_config.yaml`. After setup testtool, you can test this container by
+
+```sh
+$ container-structure-test test --image aozk/puml --config ./test/puml_test_config.yaml
+```
+
 ## License
 The MIT License.

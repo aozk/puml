@@ -1,0 +1,45 @@
+schemaVersion: "2.0.0"
+
+#
+# File exist test.
+#
+fileExistenceTests:
+    - name: "Check plantuml.jar is exist"
+      path: "/app/plantuml.jar"
+      shouldExist: true
+
+    - name: "Check java is exist"
+      path: "/usr/bin/java"
+      shouldExist: true
+      isExecutableBy: "owner"
+
+#
+# Execute command test.
+#
+# 'puml' containar has entrypoint that exec "java" with option arguments
+# and only supposed to run it. So, these test case must exec `java -jar 
+# /app/plantuml` or run script that exec `java -jar /app/plantuml` by
+# command and args parameter.
+#
+commandTests:
+    - name: "Check java path"
+      command: "which"
+      args: ["/usr/bin/java"]
+      expectedOutput: ["/usr/bin/java"]
+
+    - name: "Executable check plantuml.jar on java"
+      command: "java"
+      args: ["-jar", "/app/plantuml.jar", "-h"]
+      expectedOutput: ["Usage:.*"]
+
+    - name: "Check plantuml version"
+      command: "java"
+      args: ["-jar", "/app/plantuml.jar", "-version"]
+      expectedOutput: ["PlantUML version 1.2018.10.*"]
+
+#
+# Meta data test.
+#
+metadataTest:
+    entrypoint: ["java", "-jar", "/app/plantuml.jar"]
+    cmd: ["-h"]
